@@ -1,0 +1,57 @@
+{% extends "main_app/base.html" %}
+{% load static %}
+
+{% block title %}Términos y Condiciones{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+<div class="container mt-5">
+    <h1 class="text-center font-weight-bold mb-4">Términos y Condiciones</h1>
+    
+    <!-- Índice de navegación -->
+    <div class="mb-4">
+        <h4>Índice</h4>
+        <ul>
+            <li><a href="#uso-sitio">Uso del sitio web</a></li>
+            <li><a href="#propiedad-intelectual">Propiedad intelectual</a></li>
+            <li><a href="#responsabilidad">Limitación de responsabilidad</a></li>
+            <li><a href="#modificaciones">Modificaciones</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </div>
+
+    <!-- Secciones con anclajes -->
+    <div id="uso-sitio" class="mb-5">
+        <h3>Uso del sitio web</h3>
+        <p>
+            El contenido de este sitio es solo para su uso personal. No debe reproducir, distribuir ni comercializar ningún contenido sin nuestro consentimiento.
+        </p>
+    </div>
+
+    <div id="propiedad-intelectual" class="mb-5">
+        <h3>Propiedad intelectual</h3>
+        <p>
+            Todo el contenido, incluidos textos, imágenes y logotipos, es propiedad de HazCuentas. Su uso no autorizado está prohibido.
+        </p>
+    </div>
+
+    <div id="responsabilidad" class="mb-5">
+        <h3>Limitación de responsabilidad</h3>
+        <p>
+            HazCuentas no será responsable por pérdidas derivadas del uso de este sitio o de los servicios proporcionados.
+        </p>
+    </div>
+
+    <div id="modificaciones" class="mb-5">
+        <h3>Modificaciones</h3>
+        <p>
+            Nos reservamos el derecho de modificar estos términos en cualquier momento. Los cambios serán efectivos al ser publicados en este sitio.
+        </p>
+    </div>
+
+    <div id="contacto" class="mb-5">
+        <h3>Contacto</h3>
+        <p>Si tiene preguntas, contáctenos en <strong>contacto@hazcuentas.com</strong>.</p>
+    </div>
+</div>
+{% endblock %}

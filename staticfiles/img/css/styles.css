@@ -1,0 +1,32 @@
+/* Estilo para la sección Hero */
+.hero {
+    position: relative;
+    color: white;
+    height: 500px; /* Altura ajustable según tu diseño */
+}
+
+.hero-bg {
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* La imagen queda debajo del contenido */
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Capa con color negro semi-transparente */
+    z-index: 0; /* La capa está entre la imagen y el texto */
+}
+
+.container {
+    position: relative;
+    z-index: 2; /* El texto y los botones van sobre la capa de transparencia */
+}

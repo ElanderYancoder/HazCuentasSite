@@ -1,0 +1,202 @@
+{% extends "main_app/base.html" %}
+
+{% block title %}Acerca de Nosotros - Digitalización de Negocios{% endblock %}
+
+{% block content %}
+<header class="hero text-center py-5">
+    <!-- Imagen de fondo -->
+    <div class="hero-bg" style="background-image: url('/static/img/about-us-header.webp');"></div>
+    <!-- Capa de transparencia -->
+    <div class="hero-overlay"></div>
+
+    <div class="container position-relative">
+        <!-- Título principal y texto de bienvenida -->
+        <h1 class="display-4 font-weight-bold text-white">Acerca de HazCuentas</h1>
+        <p class="lead text-white mb-4">Transformamos las pymes con soluciones tecnológicas eficientes, accesibles y fáciles de usar.</p>
+        <a href="#mission" class="btn btn-outline-light btn-lg">Descubre nuestra historia</a>
+    </div>
+</header>
+
+<!-- Sección de Misión y Visión -->
+<section id="mission" class="py-5">
+    <div class="container">
+        <h2 class="text-center font-weight-bold mb-4">Misión y Visión</h2>
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <h4 class="font-weight-bold text-dark mb-3">Nuestra Misión</h4>
+                <p class="text-muted">Nuestra misión es proporcionar soluciones digitales accesibles y efectivas para las pequeñas y medianas empresas, facilitando la automatización de procesos y mejorando la eficiencia operativa mediante tecnología intuitiva.</p>
+            </div>
+            <div class="col-lg-6">
+                <h4 class="font-weight-bold text-dark mb-3">Nuestra Visión</h4>
+                <p class="text-muted">Aspiramos a ser la plataforma preferida por las pymes para la digitalización de sus negocios, proporcionando herramientas innovadoras que les permitan crecer y prosperar en un entorno competitivo.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sección de Valores -->
+<section id="values" class="py-5 mode-sensitive-bg">
+    <div class="container">
+        <h2 class="text-center font-weight-bold mb-4">Nuestros Valores</h2>
+        <div class="row justify-content-center">
+            <!-- Valor 1 -->
+            <div class="col-md-4 mb-4">
+                <div class="card shadow border-0 rounded">
+                    <div class="card-body text-center">
+                        <h5 class="card-title text-primary font-weight-bold">Innovación</h5>
+                        <p class="card-text text-muted">Siempre estamos en la búsqueda de nuevas ideas y soluciones tecnológicas que mejoren la eficiencia de las empresas.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Valor 2 -->
+            <div class="col-md-4 mb-4">
+                <div class="card shadow border-0 rounded">
+                    <div class="card-body text-center">
+                        <h5 class="card-title text-primary font-weight-bold">Compromiso</h5>
+                        <p class="card-text text-muted">Nos comprometemos con el éxito de nuestros clientes, brindando atención personalizada y soluciones a medida de sus necesidades.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Valor 3 -->
+            <div class="col-md-4 mb-4">
+                <div class="card shadow border-0 rounded">
+                    <div class="card-body text-center">
+                        <h5 class="card-title text-primary font-weight-bold">Transparencia</h5>
+                        <p class="card-text text-muted">Operamos con total transparencia, brindando claridad en todas nuestras acciones y asegurando la confianza de nuestros clientes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sección de Quiénes somos -->
+<section id="about" class="py-5 mode-sensitive-bg">
+    <div class="container">
+        <h2 class="text-center mode-sensitive-text font-weight-bold">¿Quiénes somos?</h2>
+        <p class="lead text-center mb-5 mode-sensitive-text">HazCuentas es una empresa dedicada al desarrollo de soluciones digitales para pymes, ayudando a optimizar procesos y mejorar la eficiencia operativa.</p>
+        <div class="row align-items-center">
+            <div class="col-md-6 mb-4">
+                <img src="/static/img/about_us.webp" alt="Sobre nosotros" class="img-fluid rounded-lg shadow-sm">
+            </div>
+            <div class="col-md-6">
+                <p class="mode-sensitive-text">Contamos con un equipo de expertos en software, consultoría y tecnología de la información. Nos apasiona crear herramientas fáciles de usar que permiten gestionar facturación, inventarios y más, todo de forma eficiente y sencilla.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sección de Nuestro Equipo -->
+<section id="team" class="py-5">
+    <div class="container">
+        <h2 class="text-center font-weight-bold mb-4">Conoce a Nuestro Equipo</h2>
+        <p class="text-center text-muted mb-5">Un equipo multidisciplinario de expertos que trabaja para ofrecer lo mejor en soluciones tecnológicas.</p>
+        <div class="row justify-content-center">
+            <!-- Miembro 1 -->
+            <div class="col-md-3 mb-4">
+                <div class="card shadow border-0 rounded">
+                    <img src="/static/img/team-member-1.webp" class="card-img-top rounded-circle" alt="Miembro 1">
+                    <div class="card-body text-center">
+                        <h5 class="card-title font-weight-bold">Juan Pérez</h5>
+                        <p class="card-text text-muted">CEO & Fundador</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Miembro 2 -->
+            <div class="col-md-3 mb-4">
+                <div class="card shadow border-0 rounded">
+                    <img src="/static/img/team-member-2.webp" class="card-img-top rounded-circle" alt="Miembro 2">
+                    <div class="card-body text-center">
+                        <h5 class="card-title font-weight-bold">Ana Gómez</h5>
+                        <p class="card-text text-muted">CTO & Directora de Tecnología</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Miembro 3 -->
+            <div class="col-md-3 mb-4">
+                <div class="card shadow border-0 rounded">
+                    <img src="/static/img/team-member-3.webp" class="card-img-top rounded-circle" alt="Miembro 3">
+                    <div class="card-body text-center">
+                        <h5 class="card-title font-weight-bold">Carlos Fernández</h5>
+                        <p class="card-text text-muted">Director de Marketing</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Miembro 4 -->
+            <div class="col-md-3 mb-4">
+                <div class="card shadow border-0 rounded">
+                    <img src="/static/img/team-member-4.webp" class="card-img-top rounded-circle" alt="Miembro 4">
+                    <div class="card-body text-center">
+                        <h5 class="card-title font-weight-bold">Laura Rodríguez</h5>
+                        <p class="card-text text-muted">Directora de Ventas</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sección de Contacto -->
+<section id="contact" class="py-5 mode-sensitive-bg">
+    <div class="container">
+        <h2 class="text-center font-weight-bold">Contáctanos</h2>
+        <p class="lead text-center mb-5">Si tienes alguna pregunta o necesitas más información, no dudes en ponerte en contacto con nosotros.</p>
+        <form>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="name" placeholder="Tu nombre">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Correo electrónico</label>
+                        <input type="email" class="form-control" id="email" placeholder="Tu correo electrónico">
+                    </div>
+                    <div class="mb-3">
+                        <label for="message" class="form-label">Mensaje</label>
+                        <textarea class="form-control" id="message" rows="3" placeholder="Tu mensaje"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary shadow-lg">Enviar</button>
+                </div>
+                <div class="col-md-6">
+                    <h5>Dirección</h5>
+                    <p>Calle Ficticia 123, Ciudad, País</p>
+                    <h5>Teléfono</h5>
+                    <p>+1 234 567 890</p>
+                    <h5>Correo</h5>
+                    <p>contacto@hazcuentas.com</p>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+{% endblock %}
+
+<!-- Estilos adicionales en el archivo CSS -->
+<style>
+    .hero-bg {
+        background-position: center;
+        background-size: cover;
+        height: 100vh;
+        filter: brightness(50%);
+    }
+    .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+    .card-body img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+    }
+    .btn-outline-light {
+        border-radius: 25px;
+    }    
+        
+    
+</style>

@@ -1,0 +1,67 @@
+{% extends "entrenamiento/base_entrenamiento.html" %}
+
+{% block title %}Gestionar Insignias{% endblock %}
+
+{% block entrenamiento_content %}
+<div class="container mt-5">
+    <!-- Título Principal -->
+    <h2 class="text-center font-weight-bold mb-4">Gestionar Insignias</h2>
+
+    <!-- Botones para agregar nuevas insignias y otorgar insignias -->
+    <div class="d-flex justify-content-center justify-content-md-start mb-4 flex-column flex-md-row">
+        <a href="{% url 'crear_insignia' %}" class="btn btn-success mb-3 mb-md-0 mr-md-3">Agregar Nueva Insignia</a>
+        <a href="{% url 'otorgar_insignia' %}" class="btn btn-primary mb-3 mb-md-0">Otorgar Insignias</a>
+    </div>
+
+    <!-- Tabla de Insignias Existentes -->
+    {% if insignias %}
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Imagen</th>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for insignia in insignias %}
+                        <tr>
+                            <!-- Columna Imagen -->
+                            <td>
+                                {% if insignia.imagen %}
+                                    <img src="{{ insignia.imagen.url }}" alt="{{ insignia.nombre }}" style="width: 50px; height: 50px; object-fit: cover;">
+                                {% else %}
+                                    <span class="text-muted">Sin imagen</span>
+                                {% endif %}
+                            </td>
+                            <!-- Columna Nombre -->
+                            <td>{{ insignia.nombre }}</td>
+                            <!-- Columna Descripción (truncada a 10 palabras) -->
+                            <td>{{ insignia.descripcion|truncatewords:10 }}</td>
+                            <!-- Columna Acciones -->
+                            <td>
+                                <!-- Aquí usamos 'btn-group' para botones horizontales en pantallas grandes y verticales en móviles -->
+                                <div class="btn-group btn-group-sm d-flex flex-column flex-md-row">
+                                    <!-- Botón para editar insignia -->
+                                    <a href="{% url 'editar_insignia' insignia.id %}" class="btn btn-primary mb-2 mb-md-0 mr-md-2 w-100">Editar</a>
+                                    
+                                    <!-- Formulario para eliminar insignia -->
+                                    <form method="post" action="{% url 'eliminar_insignia' insignia.id %}" style="display: inline;">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-danger w-100" onclick="return confirm('¿Estás seguro de que quieres eliminar esta insignia?')">Eliminar</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <!-- Mensaje cuando no hay insignias disponibles -->
+        <p class="text-center text-muted">No hay insignias disponibles.</p>
+    {% endif %}
+</div>
+{% endblock %}

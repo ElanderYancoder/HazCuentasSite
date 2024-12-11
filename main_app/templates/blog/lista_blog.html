@@ -1,0 +1,131 @@
+{% extends "main_app/base.html" %}
+{% load static %}
+
+{% block title %}Blog - HazCuentas{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center font-weight-bold mb-5">Blog</h1>
+
+    <!-- Barra de búsqueda y filtros -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <!-- Formulario de búsqueda -->
+        <form method="get" class="form-inline">
+            <input 
+                type="text" 
+                name="q" 
+                class="form-control mr-2" 
+                placeholder="Buscar publicaciones..." 
+                value="{{ query|default:'' }}" 
+                style="width: 300px;"
+            >
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </form>
+
+        <!-- Filtros de Orden -->
+        <form method="get" class="d-flex align-items-center">
+            {% if query %}<input type="hidden" name="q" value="{{ query }}">{% endif %}
+            <select name="sort" class="form-control" onchange="this.form.submit()">
+                <option value="recientes" {% if request.GET.sort == "recientes" %}selected{% endif %}>Más Recientes</option>
+                <option value="vistas" {% if request.GET.sort == "vistas" %}selected{% endif %}>Más Vistas</option>
+                <option value="comentarios" {% if request.GET.sort == "comentarios" %}selected{% endif %}>Más Comentadas</option>
+            </select>
+        </form>
+    </div>
+
+    <div class="row">
+        <!-- Lista de publicaciones -->
+        <div class="col-lg-8">
+            <div class="row">
+                {% for post in page_posts %}
+                <div class="col-md-6 mb-4">
+                    <div class="card shadow-sm border-light rounded">
+                        {% if post.imagen %}
+                        <img src="{{ post.imagen.url }}" class="card-img-top" alt="{{ post.titulo }}" style="object-fit: cover; height: 200px;">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title text-primary">{{ post.titulo }}</h5>
+                            <p class="card-text text-muted">{{ post.contenido|truncatechars:150 }}</p>
+                            <small class="text-muted d-block mb-2">
+                                Vistas: {{ post.vistas }} | Comentarios: {{ post.comentarios.count }}
+                            </small>
+                            <a href="{% url 'detalle_blog' post.slug %}" class="btn btn-primary btn-sm">Leer más</a>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <p class="text-center w-100 text-muted">No se encontraron publicaciones.</p>
+                {% endfor %}
+            </div>
+
+            <!-- Paginación -->
+            <nav aria-label="Page navigation" class="mt-4">
+                <ul class="pagination justify-content-center">
+                    {% if page_posts.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page=1{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}" aria-label="Primera">
+                            <span aria-hidden="true">&laquo;&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_posts.previous_page_number }}{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}" aria-label="Anterior">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    {% endif %}
+
+                    <li class="page-item disabled">
+                        <span class="page-link">Página {{ page_posts.number }} de {{ page_posts.paginator.num_pages }}</span>
+                    </li>
+
+                    {% if page_posts.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_posts.next_page_number }}{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}" aria-label="Siguiente">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_posts.paginator.num_pages }}{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}" aria-label="Última">
+                            <span aria-hidden="true">&raquo;&raquo;</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Publicaciones populares y formulario de suscripción -->
+        <div class="col-lg-4">
+            <!-- Publicaciones Populares -->
+            <div class="popular-posts bg-light p-3 rounded shadow-sm mb-4">
+                <h5 class="font-weight-bold">Publicaciones Populares</h5>
+                <ul class="list-unstyled">
+                    {% for post in page_posts.object_list|dictsortreversed:"vistas"|slice:":5" %}
+                    <li class="mb-3">
+                        <a href="{% url 'detalle_blog' post.slug %}" class="text-primary font-weight-bold">{{ post.titulo }}</a>
+                        <small class="text-muted d-block">Vistas: {{ post.vistas }}</small>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <!-- Mostrar suscripción solo si el usuario no está suscrito -->
+            {% if not request.user.is_authenticated or not request.user.profile.is_subscribed %}
+            <div class="subscription-form bg-white p-4 rounded shadow-sm">
+                <h5 class="font-weight-bold text-center mb-3">Suscríbete</h5>
+                <p class="text-muted text-center mb-4" style="font-size: 0.9rem;">
+                    Recibe nuestras últimas publicaciones y noticias directamente en tu correo.
+                </p>
+                <form method="post" action="{% url 'suscribirse' %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input type="email" name="email" class="form-control shadow-sm" placeholder="Correo electrónico" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block shadow-sm">Suscribirse</button>
+                </form>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

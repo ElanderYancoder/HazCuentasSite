@@ -1,0 +1,58 @@
+{% extends "main_app/base.html" %}
+
+{% block title %}{{ categoria.nombre }} - Centro de Ayuda{% endblock %}
+
+{% block content %}
+<header class="hero text-center py-5">
+    <div class="hero-bg" style="background-image: url('/static/img/help-center-header.webp');"></div>
+    <div class="hero-overlay"></div>
+
+    <div class="container position-relative">
+        <h1 class="display-4 font-weight-bold text-white">Centro de Ayuda: {{ categoria.nombre }}</h1>
+        <p class="lead text-white mb-4">{{ categoria.descripcion }}</p>
+        <!-- Botón para volver al Centro de Ayuda -->
+        <a href="{% url 'ayuda' %}" class="btn btn-outline-light btn-lg mt-3">Volver al Centro de Ayuda</a>
+    </div>
+</header>
+
+<section id="faqs" class="py-5">
+    <div class="container">
+        <h2 class="text-center font-weight-bold mb-4">Preguntas Frecuentes - {{ categoria.nombre }}</h2>
+        {% if faqs %}
+            <div class="accordion" id="faqAccordion">
+                {% for faq in faqs %}
+                    <div class="card">
+                        <div class="card-header" id="faq{{ forloop.counter }}">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link font-weight-bold" type="button" data-toggle="collapse" data-target="#collapse{{ forloop.counter }}" aria-expanded="false" aria-controls="collapse{{ forloop.counter }}">
+                                    {{ faq.pregunta }}
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapse{{ forloop.counter }}" class="collapse" aria-labelledby="faq{{ forloop.counter }}" data-parent="#faqAccordion">
+                            <div class="card-body">
+                                {{ faq.respuesta }}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="text-center text-muted">No hay preguntas frecuentes en esta categoría.</p>
+        {% endif %}
+    </div>
+</section>
+
+<section id="support-contact" class="py-5 mode-sensitive-bg">
+    <div class="container text-center">
+        <h2 class="font-weight-bold mb-4">¿Aún necesitas ayuda?</h2>
+        <p class="text-muted mb-5">Nuestro equipo está aquí para ayudarte. Contáctanos y resolveremos tus dudas rápidamente.</p>
+        <a href="/contacto" class="btn btn-primary btn-lg">Contáctanos</a>
+    </div>
+</section>
+
+<!-- Botón para volver al Centro de Ayuda -->
+<div class="container text-center my-5">
+    <a href="{% url 'ayuda' %}" class="btn btn-secondary btn-lg">Volver al Centro de Ayuda</a>
+</div>
+{% endblock %}

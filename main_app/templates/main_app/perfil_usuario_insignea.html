@@ -1,0 +1,32 @@
+{% extends "main_app/base.html" %}
+
+{% block title %}Perfil de Usuario{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Insignias</h2>
+    <div class="row">
+        {% for item in insignias %}
+            <div class="col-md-4 text-center">
+                <img src="{{ item.insignia.imagen.url }}" alt="{{ item.insignia.nombre }}" class="img-fluid">
+                <h4>{{ item.insignia.nombre }}</h4>
+                <p>{{ item.insignia.descripcion }}</p>
+                <p><small>Otorgada: {{ item.fecha_otorgada|date:"d M Y" }}</small></p>
+            </div>
+        {% empty %}
+            <p>No tienes insignias aún.</p>
+        {% endfor %}
+    </div>
+
+    <h2 class="mt-5">Certificados</h2>
+    <ul>
+        {% for certificado in certificados %}
+            <li>
+                Certificado por completar un módulo el {{ certificado.fecha_emision|date:"d M Y" }}
+            </li>
+        {% empty %}
+            <p>No tienes certificados aún.</p>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

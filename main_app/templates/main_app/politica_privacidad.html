@@ -1,0 +1,89 @@
+{% extends "main_app/base.html" %}
+
+{% block title %}Política de Privacidad{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <!-- Título principal -->
+    <h1 class="text-center font-weight-bold mb-4">Política de Privacidad</h1>
+    
+    <!-- Índice de navegación -->
+    <div class="mb-4">
+        <h4>Índice</h4>
+        <ul>
+            <li><a href="#informacion-recogida">Información que recopilamos</a></li>
+            <li><a href="#uso-informacion">Cómo usamos su información</a></li>
+            <li><a href="#compartir-datos">Compartir datos con terceros</a></li>
+            <li><a href="#derechos-usuario">Derechos del usuario</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </div>
+
+    <!-- Secciones con anclajes -->
+    <div id="informacion-recogida" class="mb-5">
+        <h3>Información que recopilamos</h3>
+        <ul>
+            <li>Información personal, como nombre, correo electrónico y número de teléfono.</li>
+            <li>Datos sobre el uso del sitio web mediante cookies y tecnologías similares.</li>
+        </ul>
+    </div>
+
+    <div id="uso-informacion" class="mb-5">
+        <h3>Cómo usamos su información</h3>
+        <p>
+            Usamos la información recopilada para:
+            <ul>
+                <li>Proveer los servicios solicitados.</li>
+                <li>Mejorar nuestra plataforma.</li>
+                <li>Enviar notificaciones relacionadas con el servicio.</li>
+            </ul>
+        </p>
+    </div>
+
+    <div id="compartir-datos" class="mb-5">
+        <h3>Compartir datos con terceros</h3>
+        <p>
+            Nunca vendemos su información personal. Solo compartimos datos con terceros en los siguientes casos:
+            <ul>
+                <li>Para cumplir con la ley.</li>
+                <li>Con proveedores que nos ayudan a operar el sitio web.</li>
+            </ul>
+        </p>
+    </div>
+
+    <div id="derechos-usuario" class="mb-5">
+        <h3>Derechos del usuario</h3>
+        <p>Usted tiene derecho a acceder, modificar o eliminar su información personal. Contáctenos en <strong>privacidad@hazcuentas.com</strong>.</p>
+    </div>
+
+    <div id="contacto" class="mb-5">
+        <h3>Contacto</h3>
+        <p>Si tiene preguntas, contáctenos en <strong>privacidad@hazcuentas.com</strong>.</p>
+    </div>
+</div>
+{% endblock %}
+
+
+<style>
+    /* Estilo para el índice */
+.container ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+.container ul li {
+    margin-bottom: 10px;
+}
+.container ul li a {
+    color: #007bff;
+    text-decoration: none;
+}
+.container ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Espaciado para anclajes */
+[id] {
+    scroll-margin-top: 80px; /* Ajusta según el alto de tu navbar fija */
+}
+
+</style>

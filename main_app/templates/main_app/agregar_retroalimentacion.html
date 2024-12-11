@@ -1,0 +1,33 @@
+{% extends "main_app/base.html" %}
+
+{% block title %}Agregar Retroalimentación{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Dejar Retroalimentación para "{{ leccion.titulo }}"</h2>
+    
+    <!-- Formulario para retroalimentación -->
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="id_comentario" class="form-label">Tu Comentario:</label>
+            <textarea name="comentario" id="id_comentario" class="form-control" rows="4" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="id_calificacion" class="form-label">Calificación:</label>
+            <select name="calificacion" id="id_calificacion" class="form-select" required>
+                <option value="">Seleccione una calificación</option>
+                {% for i in "12345" %}
+                <option value="{{ i }}">{{ i }} estrellas</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="d-flex justify-content-between">
+            <a href="{% url 'detalle_leccion' leccion.id %}" class="btn btn-outline-secondary">
+                <i class="bi bi-arrow-left"></i> Volver a la Lección
+            </a>
+            <button type="submit" class="btn btn-primary">Enviar Retroalimentación</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

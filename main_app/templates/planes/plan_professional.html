@@ -1,0 +1,78 @@
+{% extends "main_app/base.html" %}
+
+{% block title %}Plan Profesional - HazCuentas{% endblock %}
+
+{% block content %}
+<!-- Sección de Introducción del Plan -->
+<section id="plan-introduction" class="py-5">
+    <div class="container text-center">
+        <h1 class="display-4 font-weight-bold">Plan Profesional</h1>
+        <p class="lead">El aliado perfecto para empresas en crecimiento que necesitan herramientas avanzadas de gestión empresarial.</p>
+        <a href="{% url 'suscripcion' %}" class="btn btn-primary btn-lg shadow-lg mt-4">Suscríbete Ahora</a>
+    </div>
+</section>
+
+<!-- Sección de Vista Previa del Software -->
+<section id="software-preview" class="py-5 mode-sensitive-bg">
+    <div class="container">
+        <h2 class="text-center font-weight-bold mb-4">Descubre cómo se ve nuestro software</h2>
+        <div class="row align-items-center">
+            <!-- Imagen del software en acción -->
+            <div class="col-md-6 mb-4 text-center">
+                <img src="/static/img/software_laptop_professional.webp" alt="Vista del software en laptop" class="img-fluid rounded-lg shadow">
+            </div>
+            <!-- Características principales destacadas -->
+            <div class="col-md-6">
+                <ul class="list-unstyled">
+                    <li class="mb-3">
+                        <h5><i class="fas fa-check-circle text-primary"></i> Facturación avanzada</h5>
+                        <p>Personaliza tus facturas con múltiples formatos y ajusta los detalles según tus necesidades.</p>
+                    </li>
+                    <li class="mb-3">
+                        <h5><i class="fas fa-database text-primary"></i> Gestión mejorada de inventarios</h5>
+                        <p>Administra hasta 500 productos con herramientas de seguimiento en tiempo real.</p>
+                    </li>
+                    <li class="mb-3">
+                        <h5><i class="fas fa-chart-line text-primary"></i> Reportes detallados</h5>
+                        <p>Obtén informes avanzados de ventas, inventarios y rendimiento empresarial.</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sección de Funciones Detalladas -->
+<section id="plan-features" class="py-5">
+    <div class="container">
+        <h2 class="text-center font-weight-bold mb-4">Todo lo que incluye el Plan Profesional</h2>
+        <div class="row">
+            <!-- Listado completo de funciones -->
+            <div class="col-md-6">
+                <ul class="list-unstyled">
+                    <li><i class="fas fa-check text-success"></i> Acceso a facturación avanzada</li>
+                    <li><i class="fas fa-check text-success"></i> Hasta 500 productos en inventario</li>
+                    <li><i class="fas fa-check text-success"></i> Soporte prioritario 24/7</li>
+                    <li><i class="fas fa-check text-success"></i> Integración con plataformas como Zapier y Google Drive</li>
+                    <li><i class="fas fa-check text-success"></i> Herramientas avanzadas de análisis de datos</li>
+                    <li><i class="fas fa-check text-success"></i> Automatización de procesos clave</li>
+                    <li><i class="fas fa-check text-success"></i> Gestión de usuarios con permisos personalizados</li>
+                </ul>
+            </div>
+            <!-- Imagen secundaria del software -->
+            <div class="col-md-6 text-center">
+                <img src="/static/img/software_mobile_professional.webp" alt="Vista del software en móvil" class="img-fluid rounded-lg shadow">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sección de Suscripción -->
+<section id="subscription" class="py-5 mode-sensitive-bg">
+    <div class="container text-center">
+        <h2 class="font-weight-bold">Empieza ahora con el Plan Profesional</h2>
+        <p class="lead">Por solo <span class="text-primary">$49/mes</span>, obtén acceso completo a herramientas avanzadas para gestionar tu negocio.</p>
+        <a href="{% url 'suscripcion' %}" class="btn btn-success btn-lg shadow-lg">Suscribirme</a>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends "main_app/base.html" %}
+
+{% block title %}{{ leccion.titulo }}{% endblock %}
+
+{% block content %}
+<!-- Sección principal: Título y navegación -->
+<div class="header-section d-flex flex-column flex-md-row justify-content-between align-items-center mb-4 px-3 px-md-0">
+    <!-- Título de la lección -->
+    <h2 class="fw-bold text-dark text-center text-md-start mb-3 mb-md-0">
+        {{ leccion.titulo }}
+    </h2>
+
+    <!-- Botón para volver al listado -->
+    <a href="{% url 'lista_entrenamiento' %}" class="btn btn-outline-primary btn-responsive">
+        <i class="bi bi-arrow-left-circle"></i> Volver
+    </a>
+</div>
+
+<!-- Descripción de la lección -->
+<p class="text-muted fs-5 px-3 px-md-0">{{ leccion.descripcion }}</p>
+
+<!-- Contenido principal de la lección -->
+<div class="content px-3 px-md-0">
+    {{ leccion.contenido|linebreaks }}
+</div>
+
+<!-- Sección de video -->
+{% if leccion.video %}
+    <div class="video-container mt-3 px-3 px-md-0">
+        <video width="100%" controls>
+            <source src="{{ leccion.video.url }}" type="video/mp4">
+            Tu navegador no soporta la reproducción de video.
+        </video>
+    </div>
+{% else %}
+    <p class="text-danger px-3 px-md-0">No hay video disponible para esta lección.</p>
+{% endif %}
+
+<!-- Estado de completitud -->
+<div class="mt-4 px-3 px-md-0">
+    {% if completado %}
+        <p class="text-success">Esta lección ya está marcada como completada.</p>
+    {% else %}
+        <form method="post" action="{% url 'marcar_completada' leccion.id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary">Marcar como Completada</button>
+        </form>
+    {% endif %}
+</div>
+
+<!-- Botón para dejar retroalimentación -->
+<div class="d-flex justify-content-end mt-4 px-3 px-md-0">
+    <a href="{% url 'agregar_retroalimentacion' leccion.id %}" class="btn btn-outline-success">
+        <i class="bi bi-pencil"></i> Dejar Retroalimentación
+    </a>
+</div>
+
+<!-- Sección de retroalimentaciones -->
+<div class="retroalimentaciones mt-5 px-3 px-md-0">
+    <h3>Retroalimentaciones</h3>
+    {% if retroalimentaciones %}
+        <ul class="list-group">
+            {% for retro in retroalimentaciones %}
+                <li class="list-group-item">
+                    <p class="mb-1"><strong>{{ retro.usuario.username }}</strong> - {{ retro.calificacion }} estrellas</p>
+                    <p>{{ retro.comentario }}</p>
+                    <small class="text-muted">Enviado el {{ retro.fecha|date:"d M, Y" }}</small>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="text-muted">No hay retroalimentaciones para esta lección aún.</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "main_app/base.html" %}
+
+{% block title %}Agregar Pregunta Frecuente{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h2 class="text-center font-weight-bold mb-4">Agregar Pregunta Frecuente</h2>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary btn-block">Guardar</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

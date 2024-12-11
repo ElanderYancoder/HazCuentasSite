@@ -1,0 +1,13 @@
+{% extends "main_app/base.html" %}
+{% block title %}Subir Video de Lección{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Subir Nuevo Video de Lección</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Subir Video</button>
+    </form>
+</div>
+{% endblock %}

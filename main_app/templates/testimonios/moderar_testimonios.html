@@ -1,0 +1,29 @@
+{% extends "main_app/base.html" %}
+
+{% block title %}Moderación de Testimonios{% endblock %}
+
+{% block content %}
+<section id="moderar-testimonios" class="py-5">
+    <div class="container">
+        <h2 class="text-center font-weight-bold">Moderación de Testimonios</h2>
+        <div class="row">
+            {% for testimonio in testimonios %}
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm border-light rounded">
+                        <div class="card-body text-center">
+                            <img src="{{ testimonio.foto.url }}" alt="Foto de {{ testimonio.nombre }}" class="img-fluid rounded-circle mb-3" style="width: 80px; height: 80px;">
+                            <p class="card-text">{{ testimonio.comentario }}</p>
+                            <h5 class="card-title">{{ testimonio.nombre }} - {{ testimonio.puesto }}</h5>
+                            <a href="{{ testimonio.enlace_redes }}" target="_blank" class="text-muted">Ver perfil</a>
+                            <form method="POST" action="{% url 'cambiar_estado_testimonio' testimonio.pk %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-{{ testimonio.estado|lower }} mt-2">{{ testimonio.estado|capfirst }}</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

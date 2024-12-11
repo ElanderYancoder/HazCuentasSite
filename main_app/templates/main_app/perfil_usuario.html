@@ -1,0 +1,81 @@
+{% extends "main_app/base.html" %}
+{% load custom_filters %}  <!-- Cargar el filtro personalizado aquí -->
+{% block title %}Perfil de Usuario{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <!-- Título principal de la sección -->
+    <h2 class="text-center mb-5 font-weight-bold">Mi Perfil</h2>
+
+    <!-- Tarjeta contenedora de información del perfil y opciones de actualización -->
+    <div class="card shadow-lg border-0">
+        <div class="card-body text-center">
+            
+            <!-- Vista previa de la imagen de perfil en la parte superior, en forma circular -->
+            <div class="text-center mb-4">
+                {% if user.profile.background_image %}
+                    <!-- Imagen circular con sombra para resaltar visualmente -->
+                    <img src="{{ user.profile.background_image.url }}" alt="Imagen de Fondo Actual" 
+                         class="img-fluid rounded-circle shadow mb-3" style="width: 150px; height: 150px; object-fit: cover;">
+                {% else %}
+                    <!-- Mensaje si no hay imagen seleccionada -->
+                    <p class="text-muted">No se ha seleccionado ninguna imagen de fondo.</p>
+                {% endif %}
+            </div>
+
+            <!-- Campo para cargar una nueva imagen de fondo -->
+            <h4 class="font-weight-bold text-primary mb-3">Actualizar Imagen de Fondo</h4>
+            <form method="post" enctype="multipart/form-data" class="mb-5">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ background_form.background_image.label_tag }}  <!-- Etiqueta del campo 'Imagen de Fondo' -->
+                    {{ background_form.background_image|add_class:"form-control-file" }}
+                </div>
+
+                <!-- Información básica del usuario -->
+                <h4 class="font-weight-bold text-primary mb-4">Información de Usuario</h4>
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        {{ profile_form.first_name.label_tag }}  <!-- Etiqueta del campo 'Nombre' -->
+                        {{ profile_form.first_name|add_class:"form-control" }}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        {{ profile_form.last_name.label_tag }}  <!-- Etiqueta del campo 'Apellido' -->
+                        {{ profile_form.last_name|add_class:"form-control" }}
+                    </div>
+                    <div class="col-12 mb-3">
+                        {{ profile_form.email.label_tag }}  <!-- Etiqueta del campo 'Correo' -->
+                        {{ profile_form.email|add_class:"form-control" }}
+                    </div>
+                </div>
+
+                <!-- Botón para actualizar el perfil -->
+                <button type="submit" class="btn btn-primary btn-lg mt-3 w-100">Actualizar Perfil</button>
+            </form>
+
+            <!-- Cambio de contraseña -->
+            <h4 class="font-weight-bold text-primary mb-4">Cambiar Contraseña</h4>
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        {{ password_form.old_password.label_tag }}  <!-- Etiqueta de 'Contraseña Actual' -->
+                        {{ password_form.old_password|add_class:"form-control" }}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        {{ password_form.new_password1.label_tag }}  <!-- Etiqueta de 'Nueva Contraseña' -->
+                        {{ password_form.new_password1|add_class:"form-control" }}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        {{ password_form.new_password2.label_tag }}  <!-- Etiqueta de 'Confirmar Nueva Contraseña' -->
+                        {{ password_form.new_password2|add_class:"form-control" }}
+                    </div>
+                </div>
+
+                <!-- Botón para actualizar la contraseña -->
+                <button type="submit" class="btn btn-warning btn-lg w-100">Actualizar Contraseña</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

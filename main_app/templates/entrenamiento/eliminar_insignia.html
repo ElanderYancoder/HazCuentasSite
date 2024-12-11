@@ -1,0 +1,14 @@
+{% extends "entrenamiento/base_entrenamiento.html" %}
+{% block title %}Eliminar Insignia{% endblock %}
+
+{% block entrenamiento_content %}
+<div class="container mt-5">
+    <h2 class="text-center text-danger">Eliminar Insignia</h2>
+    <p class="text-center">¿Estás seguro de que quieres eliminar la insignia <strong>{{ insignia.nombre }}</strong>?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Sí, eliminar</button>
+        <a href="{% url 'gestionar_insignias' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

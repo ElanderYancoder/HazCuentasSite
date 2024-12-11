@@ -1,0 +1,108 @@
+{% extends "main_app/base.html" %}
+
+{% block title %}Centro de Ayuda - HazCuentas{% endblock %}
+
+{% block content %}
+<header class="hero text-center py-5">
+    <div class="hero-bg" style="background-image: url('/static/img/help-center-header.webp');"></div>
+    <div class="hero-overlay"></div>
+
+    <div class="container position-relative">
+        <h1 class="display-4 font-weight-bold text-white">Centro de Ayuda</h1>
+        <p class="lead text-white mb-4">Encuentra respuestas a tus preguntas o navega por nuestras categorías de ayuda.</p>
+        <form class="form-inline justify-content-center mt-4" method="get" action="{% url 'ayuda' %}">
+            <input type="text" class="form-control form-control-lg w-50" name="q" placeholder="¿En qué podemos ayudarte?" value="{{ query }}" aria-label="Buscar">
+            <button class="btn btn-primary btn-lg ml-2">Buscar</button>
+        </form>
+    </div>
+</header>
+
+<!-- Resultados de búsqueda -->
+{% if query %}
+<section id="search-results" class="py-5 mode-sensitive-bg">
+    <div class="container">
+        <h2 class="text-center font-weight-bold mb-4">Resultados para "{{ query }}"</h2>
+        {% if faqs %}
+            <div class="accordion" id="faqAccordion">
+                {% for faq in faqs %}
+                    <div class="card">
+                        <div class="card-header" id="faq{{ forloop.counter }}">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link  font-weight-bold" type="button" data-toggle="collapse" data-target="#collapse{{ forloop.counter }}" aria-expanded="false" aria-controls="collapse{{ forloop.counter }}">
+                                    {{ faq.pregunta }}
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapse{{ forloop.counter }}" class="collapse" aria-labelledby="faq{{ forloop.counter }}" data-parent="#faqAccordion">
+                            <div class="card-body text-muted">
+                                {{ faq.respuesta }}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="text-center">No se encontraron resultados para "{{ query }}".</p>
+        {% endif %}
+    </div>
+</section>
+{% endif %}
+
+<!-- Sección de Categorías -->
+<section id="help-categories" class="py-5">
+    <div class="container">
+        <h2 class="text-center font-weight-bold mb-4">Categorías de Ayuda</h2>
+        <div class="row justify-content-center">
+            {% for categoria in categorias %}
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow border-0 rounded">
+                        <div class="card-body text-center">
+                            <h5 class="card-title text-primary font-weight-bold">{{ categoria.nombre }}</h5>
+                            <p class="card-text text-muted">{{ categoria.descripcion }}</p>
+                            <a href="{% url 'categoria_ayuda' categoria.slug %}" class="btn btn-outline-primary btn-sm">Ver más</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Sección de Preguntas Frecuentes -->
+<section id="faqs" class="py-5">
+    <div class="container">
+        <h2 class="text-center font-weight-bold mb-4">Preguntas Frecuentes</h2>
+        {% if faqs %}
+            <div class="accordion" id="faqAccordion">
+                {% for faq in faqs %}
+                    <div class="card">
+                        <div class="card-header" id="faq{{ forloop.counter }}">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link font-weight-bold" type="button" data-toggle="collapse" data-target="#collapse{{ forloop.counter }}" aria-expanded="false" aria-controls="collapse{{ forloop.counter }}">
+                                    {{ faq.pregunta }}
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapse{{ forloop.counter }}" class="collapse" aria-labelledby="faq{{ forloop.counter }}" data-parent="#faqAccordion">
+                            <div class="card-body">
+                                {{ faq.respuesta }}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="text-center text-muted">No hay preguntas frecuentes disponibles en este momento.</p>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Sección de Contacto -->
+<section id="support-contact" class="py-5 mode-sensitive-bg">
+    <div class="container text-center">
+        <h2 class="font-weight-bold mb-4">¿Aún necesitas ayuda?</h2>
+        <p class="text-muted mb-5">Nuestro equipo está aquí para ayudarte. Contáctanos y resolveremos tus dudas rápidamente.</p>
+        <a href="/contacto" class="btn btn-primary btn-lg">Contáctanos</a>
+    </div>
+</section>
+{% endblock %}

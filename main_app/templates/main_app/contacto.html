@@ -1,0 +1,41 @@
+{% extends "main_app/base.html" %}
+
+{% block title %}Contáctanos - HazCuentas{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center font-weight-bold mb-4">Contáctanos</h1>
+    <p class="text-center text-muted mb-5">¿Tienes alguna pregunta o necesitas ayuda? Completa el formulario y nuestro equipo te contactará.</p>
+    
+    {% if messages %}
+    <div class="container">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form.nombre.label_tag }}
+                    {{ form.nombre }}
+                </div>
+                <div class="form-group">
+                    {{ form.email.label_tag }}
+                    {{ form.email }}
+                </div>
+                <div class="form-group">
+                    {{ form.mensaje.label_tag }}
+                    {{ form.mensaje }}
+                </div>
+                <button type="submit" class="btn btn-primary btn-block btn-lg">Enviar Mensaje</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

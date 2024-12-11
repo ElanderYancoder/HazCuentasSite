@@ -1,0 +1,50 @@
+{% extends "main_app/base.html" %}
+
+{% block title %}Lista de Entrenamiento{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Lista de Lecciones</h2>
+
+    {% if lecciones %}
+        <div class="row">
+            {% for leccion in lecciones %}
+                <div class="col-md-6 col-lg-4">
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ leccion.titulo }}</h5>
+                            
+                            <!-- Vista previa del video -->
+                            {% if leccion.video %}
+                                <div class="mb-3">
+                                    <video width="100%" controls>
+                                        <source src="{{ leccion.video.url }}" type="video/mp4">
+                                        Tu navegador no soporta este formato de video.
+                                    </video>
+                                </div>
+                            {% endif %}
+                            
+                            <p class="card-text">
+                                {{ leccion.descripcion|truncatewords:20 }}
+                            </p>
+                            
+                            {% if leccion.id in lecciones_completadas %}
+                                <span class="badge bg-success mb-2">Completado</span>
+                            {% else %}
+                                <span class="badge bg-secondary mb-2">Pendiente</span>
+                            {% endif %}
+                            
+                            <a href="{% url 'detalle_leccion' leccion.id %}" class="btn btn-primary btn-sm">Ver Detalles</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-info text-center" role="alert">
+            No hay lecciones disponibles en este momento.
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
+

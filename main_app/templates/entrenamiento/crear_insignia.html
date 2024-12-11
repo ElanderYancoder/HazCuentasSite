@@ -1,0 +1,52 @@
+{% extends "entrenamiento/base_entrenamiento.html" %}
+{% load static %}
+{% block title %}Crear Insignia{% endblock %}
+
+{% block entrenamiento_content %}
+<div class="container mt-5">
+    <!-- Título principal -->
+    <h2 class="text-center font-weight-bold mb-5">Crear Insignia</h2>
+    
+    <!-- Fila de contenido -->
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <!-- Tarjeta para el formulario -->
+            <div class="card shadow-lg border-0">
+                <div class="card-body">
+                    <!-- Subtítulo informativo -->
+                    <p class="text-muted text-center mb-4">
+                        Completa los campos para crear una nueva insignia. ¡Hazlo lucir profesional y motivador!
+                    </p>
+
+                    <!-- Formulario de creación -->
+                    <form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+                        {% csrf_token %}
+                        {{ form.as_p }}
+
+                        <!-- Botón de acción -->
+                        <div class="d-flex justify-content-center mt-4">
+                            <button type="submit" class="btn btn-primary btn-lg px-5 shadow-sm">Crear Insignia</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Mensajes de alerta -->
+            {% if messages %}
+                <div class="mt-4">
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <!-- Botón para volver a la gestión de insignias -->
+            <div class="text-center mt-4">
+                <a href="{% url 'gestionar_insignias' %}" class="btn btn-secondary btn-lg shadow-sm">Volver a Gestión de Insignias</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

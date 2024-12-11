@@ -1,0 +1,29 @@
+{% extends "main_app/base.html" %}
+
+{% block title %}Notificaciones{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Tus Notificaciones</h2>
+    {% if notificaciones %}
+        <ul class="list-group">
+            {% for notificacion in notificaciones %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <strong>{{ notificacion.titulo }}</strong>
+                        <p>{{ notificacion.mensaje }}</p>
+                        <small class="text-muted">Enviado: {{ notificacion.fecha_creacion|date:"d/m/Y H:i" }}</small>
+                    </div>
+                    {% if notificacion.leido %}
+                        <span class="badge bg-success">Leído</span>
+                    {% else %}
+                        <span class="badge bg-secondary">No leído</span>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No tienes notificaciones en este momento.</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "main_app/base.html" %}
+
+{% block title %}Agregar Testimonio{% endblock %}
+
+{% block content %}
+<section id="agregar-testimonio" class="py-5">
+    <div class="container">
+        <h2 class="text-center font-weight-bold text-primary mb-4">Agregar Testimonio</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    
+                    <!-- Campo para el nombre del cliente -->
+                    <div class="form-group">
+                        <label for="id_nombre">Nombre</label>
+                        {{ form.nombre }}
+                    </div>
+                    
+                    <!-- Campo para el puesto del cliente -->
+                    <div class="form-group">
+                        <label for="id_puesto">Puesto</label>
+                        {{ form.puesto }}
+                    </div>
+                    
+                    <!-- Campo para el comentario del cliente -->
+                    <div class="form-group">
+                        <label for="id_comentario">Comentario</label>
+                        {{ form.comentario }}
+                    </div>
+                    
+                    <!-- Campo para la foto del cliente -->
+                    <div class="form-group">
+                        <label for="id_foto">Foto</label>
+                        {{ form.foto }}
+                    </div>
+                    
+                    <!-- Campo para el enlace a redes sociales -->
+                    <div class="form-group">
+                        <label for="id_enlace_redes">Enlace a redes sociales</label>
+                        {{ form.enlace_redes }}
+                    </div>
+
+                    <!-- Botón para enviar el formulario -->
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">Guardar Testimonio</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

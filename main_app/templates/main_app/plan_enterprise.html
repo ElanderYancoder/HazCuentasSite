@@ -1,0 +1,22 @@
+{% extends "main_app/base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center font-weight-bold">{{ title }}</h2>
+    <p class="text-center lead">{{ price }}</p>
+    
+    <!-- Listado de características del plan -->
+    <ul class="list-group list-group-flush mb-4">
+        {% for feature in features %}
+            <li class="list-group-item">{{ feature }}</li>
+        {% endfor %}
+    </ul>
+
+    <!-- Botón para adquirir el plan -->
+    <div class="text-center">
+        <a href="{% url 'checkout' %}" class="btn btn-primary btn-lg">Adquirir este plan</a>
+    </div>
+</div>
+{% endblock %}

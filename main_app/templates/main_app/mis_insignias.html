@@ -1,0 +1,80 @@
+{% extends "entrenamiento/base_entrenamiento.html" %}
+{% load static %}
+{% load custom_filters %}
+{% load color_filters %}
+{% static 'css/styles.css' %}
+
+{% block title %}Mis Insignias{% endblock %}
+
+{% block entrenamiento_content %}
+<div class="container mt-5">
+    <!-- Título Principal -->
+    <h2 class="text-center font-weight-bold mb-5">Mis Insignias de Logro</h2>
+
+    {% if insignias_usuario %}
+        <!-- Grid de Insignias -->
+        <div class="row">
+            {% for insignia_usuario in insignias_usuario %}
+                <div class="col-12 col-sm-6 col-md-4 mb-4">
+                    <!-- Tarjeta de Insignia -->
+                    <div class="card h-100 shadow-lg border-0 rounded-lg text-center">
+                        
+                        <!-- Imagen de la Insignia -->
+                        {% if insignia_usuario.insignia.imagen %}
+                            <img 
+                                src="{{ insignia_usuario.insignia.imagen.url }}" 
+                                class="card-img-top p-4 rounded-circle mx-auto" 
+                                alt="{{ insignia_usuario.insignia.nombre }}" 
+                                style="width: 150px; height: 150px; object-fit: cover;"
+                            >
+                        {% else %}
+                            <!-- Imagen Aleatoria (Placeholder) -->
+                            <div 
+                                class="card-img-top p-4 rounded-circle mx-auto text-white d-flex align-items-center justify-content-center" 
+                                style="width: 150px; height: 150px; background-color: {{ insignia_usuario.insignia.nombre|random_color }}; font-size: 1.2rem; font-weight: bold;"
+                            >
+                                {{ insignia_usuario.insignia.nombre|slice:":2" }}
+                            </div>
+                        {% endif %}
+                        
+                        <!-- Cuerpo de la Tarjeta -->
+                        <div class="card-body">
+                            <!-- Nombre de la Insignia -->
+                            <h5 class="card-title font-weight-bold text-primary">
+                                {{ insignia_usuario.insignia.nombre }}
+                            </h5>
+                            
+                            <!-- Descripción -->
+                            <p class="card-text text-muted">
+                                {{ insignia_usuario.insignia.descripcion }}
+                            </p>
+                            
+                            <!-- Fecha de Otorgamiento -->
+                            <small class="text-muted">
+                                Otorgada el: {{ insignia_usuario.fecha_otorgada|date:"d M Y" }}
+                            </small>
+
+                            <!-- Motivo (opcional) -->
+                            {% if insignia_usuario.motivo %}
+                                <p class="mt-2">
+                                    <strong>Motivo:</strong> {{ insignia_usuario.motivo }}
+                                </p>
+                            {% endif %}
+                        </div>
+                        
+                        <!-- Pie de Tarjeta -->
+                        <div class="card-footer bg-transparent">
+                            <a href="#" class="btn btn-primary btn-sm shadow-sm">Ver Más</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <!-- Mensaje cuando no hay Insignias -->
+        <p class="text-center text-muted">
+            No has obtenido ninguna insignia aún. ¡Sigue completando logros para ganar insignias!
+        </p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,59 @@
+{% load static %}
+{% load custom_filters %}
+
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+<li class="mb-4">
+    <!-- Comentario principal -->
+    <div class="d-flex align-items-start">
+        <img src="{% static 'img/default_profile.jpg' %}" alt="Avatar" class="rounded-circle shadow-sm mr-3" style="width: 60px; height: 60px; object-fit: cover; border: 2px solid #ddd;">
+        <div class="comment-box mode-sensitive-bg mode-sensitive-text  p-3 rounded shadow-sm w-100">
+            <h6 class="font-weight-bold  mb-1" style="color: #2c3e50;">{{ comentario.autor.username }}</h6>
+            <p class="mb-2 text-secondary" style="font-size: 1rem; line-height: 1.5;">{{ comentario.contenido }}</p>
+            <small class="text-muted d-block mb-2" style="font-size: 0.9rem;">Publicado el {{ comentario.fecha_creacion|date:"d M Y H:i" }}</small>
+
+            <!-- Opciones: Votar y Responder -->
+            <div class="d-flex mt-2">
+                {% if user.is_authenticated %}
+                <button class="btn btn-sm btn-outline-success mr-2 votar" data-id="{{ comentario.id }}" data-voto="positivo">
+                    👍 {{ comentario.voto_positivo }}
+                </button>
+                <button class="btn btn-sm btn-outline-danger votar" data-id="{{ comentario.id }}" data-voto="negativo">
+                    👎 {{ comentario.voto_negativo }}
+                </button>
+                <button class="btn btn-sm btn-link text-primary p-0 ml-3" data-toggle="collapse" data-target="#respuesta-{{ comentario.id }}">
+                    Responder
+                </button>
+                {% endif %}
+            </div>
+
+            <!-- Formulario de respuesta -->
+            {% if user.is_authenticated %}
+            <div class="collapse mt-3" id="respuesta-{{ comentario.id }}">
+                <form method="post" action="{% url 'responder_comentario' comentario.id %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <textarea name="contenido" class="form-control border-0 shadow-sm rounded" rows="2" placeholder="Escribe tu respuesta..." style="background-color: #f9f9f9;"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-sm">Responder</button>
+                </form>
+            </div>
+            {% endif %}
+
+            <!-- Respuestas anidadas -->
+            {% if comentario.respuestas.exists %}
+            <div class="mt-3">
+                <button class="btn btn-sm btn-link text-secondary" data-toggle="collapse" data-target="#collapse-respuestas-{{ comentario.id }}">
+                    Ver respuestas ({{ comentario.respuestas.count }})
+                </button>
+                <div class="collapse mt-2" id="collapse-respuestas-{{ comentario.id }}">
+                    <ul class="list-unstyled ml-4">
+                        {% for respuesta in comentario.respuestas.all %}
+                        {% include "blog/comentario.html" with comentario=respuesta nivel=nivel|add:1 %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</li>

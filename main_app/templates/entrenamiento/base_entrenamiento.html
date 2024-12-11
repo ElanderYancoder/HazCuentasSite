@@ -1,0 +1,47 @@
+{% extends "main_app/base.html" %}
+{% block title %}Entrenamiento{% endblock %}
+
+{% block content %}
+
+<!-- Cargar archivos CSS -->
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+<!-- Barra de menú siempre visible -->
+<nav class="navbar navbar-light sticky-top gradient-navbar px-3">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+        <!-- Título o logo -->
+        <a class="navbar-brand fw-bold" href="{% url 'entrenamiento' %}">
+            <i class="bi bi-journal-text"></i> ENTRENAMIENTO
+        </a>
+        <!-- Opciones del menú, visibles siempre -->
+        <ul class="nav d-flex">
+            <li class="nav-item">
+                <a class="nav-link {% if request.resolver_match.url_name == 'progreso_entrenamiento' %}active{% endif %}" href="{% url 'progreso_entrenamiento' %}">
+                    PROGRESO
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% if request.resolver_match.url_name == 'historial_progreso' %}active{% endif %}" href="{% url 'historial_progreso' %}">
+                    HISTORIAL
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% if request.resolver_match.url_name == 'insignias' %}active{% endif %}" href="{% url 'mis_insignias' %}">
+                    INSIGNIAS
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Contenido dinámico de la sección -->
+<div class="container mt-4">
+    {% block entrenamiento_content %}
+    <h2>Bienvenido a la Sección de Entrenamiento</h2>
+    <p>Explora los módulos y lecciones para mejorar tus habilidades.</p>
+    <a href="{% url 'lista_entrenamiento' %}" class="btn btn-primary">Ver Módulos de Entrenamiento</a>
+    {% endblock %}
+</div>
+
+{% endblock %}

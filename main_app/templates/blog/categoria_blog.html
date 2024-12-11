@@ -1,0 +1,33 @@
+{% extends "main_app/base.html" %}
+{% load static %}
+
+{% block title %}{{ categoria.nombre }} - Blog{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center font-weight-bold mb-4">{{ categoria.nombre }}</h1>
+
+    <!-- Lista de publicaciones filtradas -->
+    <div class="row">
+        {% for post in posts %}
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card shadow-sm border-light rounded">
+                {% if post.imagen %}
+                <img src="{{ post.imagen.url }}" class="card-img-top" alt="{{ post.titulo }}" style="object-fit: cover; height: 200px;">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title text-primary">{{ post.titulo }}</h5>
+                    <p class="card-text text-muted">{{ post.contenido|truncatechars:150 }}</p>
+                    <a href="{% url 'detalle_blog' post.slug %}" class="btn btn-primary">Leer más</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Enlace para volver a la lista del blog -->
+    <div class="text-center mt-4">
+        <a href="{% url 'lista_blog' %}" class="btn btn-secondary">Volver al Blog</a>
+    </div>
+</div>
+{% endblock %}

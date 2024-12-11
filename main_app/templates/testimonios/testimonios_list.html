@@ -1,0 +1,37 @@
+{% extends "main_app/base.html" %}
+
+{% block title %}Testimonios{% endblock %}
+
+{% block content %}
+<section id="testimonios" class="py-5">
+    <div class="container">
+        <h2 class="text-center font-weight-bold text-primary mb-4">Testimonios de Nuestros Clientes</h2>
+        
+        <!-- Botón para agregar un testimonio -->
+        <div class="text-center mb-4">
+            <a href="{% url 'agregar_testimonio' %}" class="btn btn-primary btn-lg">Agregar Testimonio</a>
+        </div>
+
+        <div class="row">
+            {% for testimonio in testimonios %}
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-lg border-light rounded">
+                        <div class="card-body text-center">
+                            <!-- Imagen con borde suave y más nítida -->
+                            <img src="{{ testimonio.foto.url }}" alt="Foto de {{ testimonio.nombre }}" class="img-fluid rounded-circle mb-3 testimonio-img">
+                            <p class="card-text">{{ testimonio.comentario }}</p>
+                            <h5 class="card-title text-primary">{{ testimonio.nombre }} - <small class="text-muted">{{ testimonio.puesto }}</small></h5>
+                            <!-- Enlace a redes sociales -->
+                            <a href="{{ testimonio.enlace_redes }}" target="_blank" class="text-muted">Ver perfil</a>
+                            <!-- Fecha de publicación -->
+                            <p class="text-muted mt-2"><small>Publicado el: {{ testimonio.fecha_creacion|date:"d M Y" }}</small></p>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <p class="text-center">No hay testimonios aún.</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

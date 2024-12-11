@@ -1,0 +1,34 @@
+{% extends "entrenamiento/base_entrenamiento.html" %}
+{% block title %}Otorgar Insignia{% endblock %}
+
+{% block entrenamiento_content %}
+<div class="container mt-5">
+    <!-- Encabezado principal -->
+    <h1 class="text-center font-weight-bold mb-4">Otorgar Insignia</h1>
+
+    <!-- Tarjeta del formulario -->
+    <div class="card shadow-lg border-0">
+        <div class="card-body">
+            <!-- Subtítulo -->
+            <p class="text-muted text-center mb-4">
+                Selecciona un usuario y una insignia para otorgarla. 
+                ¡Motiva a tus usuarios con logros únicos!
+            </p>
+            
+            <!-- Formulario estilizado -->
+            <form method="post" class="needs-validation" novalidate>
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="d-flex justify-content-center mt-4">
+                    <button type="submit" class="btn btn-primary btn-lg px-5 shadow-sm">Otorgar Insignia</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Botón para volver a la página de gestión -->
+    <div class="text-center mt-4">
+        <a href="{% url 'gestionar_insignias' %}" class="btn btn-secondary btn-lg shadow-sm">Volver a Gestión de Insignias</a>
+    </div>
+</div>
+{% endblock %}

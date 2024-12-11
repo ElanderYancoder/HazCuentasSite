@@ -1,0 +1,34 @@
+{% extends "main_app/base.html" %}
+
+{% block title %}Noticias - Digitalización de Negocios{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <!-- Banner o sección destacada para la introducción -->
+    <div class="text-center mb-5">
+        <h2 class="text-dark font-weight-bold">Noticias y Actualizaciones</h2>
+        <p class="lead">Mantente al día con las últimas novedades sobre nuestro software, impacto en el mercado y próximos eventos.</p>
+    </div>
+
+    <!-- Lista de noticias -->
+    <div class="row">
+        {% for noticia in noticias %}
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm border-light rounded">
+                    <!-- Imagen destacada de la noticia (si tienes imágenes, puedes agregar aquí) -->
+                    {% if noticia.imagen %}
+                        <img src="{{ noticia.imagen.url }}" class="card-img-top" alt="{{ noticia.titulo }}">
+                    {% endif %}
+                    
+                    <div class="card-body">
+                        <h5 class="card-title">{{ noticia.titulo }}</h5>
+                        <p class="card-text">{{ noticia.contenido|slice:":200" }}...</p>
+                        <p><em>Publicado el {{ noticia.fecha_publicacion|date:"d M Y" }}</em></p>
+                        <a href="{% url 'detalle_noticia' id=noticia.id %}" class="btn btn-primary btn-sm">Leer más</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

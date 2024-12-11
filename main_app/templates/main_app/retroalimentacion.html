@@ -1,0 +1,19 @@
+<div class="container mt-4">
+    <h2 class="mb-4">{{ leccion.titulo }}</h2>
+    <p>{{ leccion.descripcion }}</p>
+
+    <h3>Retroalimentaciones</h3>
+    {% if retroalimentaciones %}
+        <ul class="list-group">
+            {% for retro in retroalimentaciones %}
+                <li class="list-group-item">
+                    <p class="mb-1"><strong>{{ retro.usuario.username }}</strong> - {{ retro.calificacion }} estrellas</p>
+                    <p>{{ retro.comentario }}</p>
+                    <small class="text-muted">Enviado el {{ retro.fecha|date:"d M, Y" }}</small>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No hay retroalimentaciones para esta lección aún.</p>
+    {% endif %}
+</div>

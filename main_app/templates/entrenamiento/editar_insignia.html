@@ -1,0 +1,15 @@
+{% extends "entrenamiento/base_entrenamiento.html" %}
+{% block title %}Editar Insignia{% endblock %}
+
+{% block entrenamiento_content %}
+<div class="container mt-5">
+    <h2 class="text-center font-weight-bold mb-4">Editar Insignia</h2>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        <a href="{% url 'gestionar_insignias' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

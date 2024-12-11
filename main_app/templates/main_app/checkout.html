@@ -1,0 +1,40 @@
+{% extends "main_app/base.html" %}
+
+{% block title %}Adquirir {{ plan.nombre }}{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center">Adquirir {{ plan.nombre }}</h2>
+    <p class="text-center">Estás a punto de adquirir el <strong>{{ plan.nombre }}</strong> por <strong>${{ plan.precio }}/mes</strong>.</p>
+
+    <!-- Detalles del Plan -->
+    <div class="card shadow-sm my-4">
+        <div class="card-body">
+            <h5 class="card-title">Detalles del Plan</h5>
+            <ul>
+                <li>{{ plan.descripcion }}</li>
+                <li>Precio: ${{ plan.precio }} al mes</li>
+                <li>Incluye: {{ plan.caracteristicas }}</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Formulario de Pago -->
+    <form method="post" action="{% url 'checkout' plan.id %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="card_number">Número de Tarjeta</label>
+            <input type="text" class="form-control" id="card_number" name="card_number" placeholder="0000 0000 0000 0000" required>
+        </div>
+        <div class="form-group">
+            <label for="expiry_date">Fecha de Expiración</label>
+            <input type="text" class="form-control" id="expiry_date" name="expiry_date" placeholder="MM/AA" required>
+        </div>
+        <div class="form-group">
+            <label for="cvv">CVV</label>
+            <input type="text" class="form-control" id="cvv" name="cvv" placeholder="123" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Completar Adquisición</button>
+    </form>
+</div>
+{% endblock %}

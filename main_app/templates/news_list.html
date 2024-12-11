@@ -1,0 +1,27 @@
+<!-- news_list.html -->
+
+{% extends "main_app/base.html" %}
+
+{% block title %}Noticias{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center">Noticias</h2>
+    <div class="row">
+        {% for news in news_list %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    {% if news.image %}
+                        <img src="{{ news.image.url }}" class="card-img-top" alt="{{ news.title }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ news.title }}</h5>
+                        <p class="card-text">{{ news.content|slice:":100" }}...</p>
+                        <a href="{% url 'news_detail' news.id %}" class="btn btn-primary">Leer más</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

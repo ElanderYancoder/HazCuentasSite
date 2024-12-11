@@ -1,0 +1,17 @@
+<!-- news_detail.html -->
+
+{% extends "main_app/base.html" %}
+
+{% block title %}{{ news.title }}{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>{{ news.title }}</h2>
+    <p><em>Publicado el {{ news.publication_date|date:"d M Y" }}</em></p>
+    {% if news.image %}
+        <img src="{{ news.image.url }}" alt="{{ news.title }}" class="img-fluid">
+    {% endif %}
+    <p>{{ news.content }}</p>
+    <a href="{% url 'news_list' %}" class="btn btn-secondary mt-3">Volver a Noticias</a>
+</div>
+{% endblock %}

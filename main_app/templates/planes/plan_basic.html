@@ -1,0 +1,74 @@
+{% extends "main_app/base.html" %}
+
+{% block title %}Plan Básico - HazCuentas{% endblock %}
+
+{% block content %}
+<!-- Sección de Introducción -->
+<section id="plan-introduction" class="py-5">
+    <div class="container text-center">
+        <h1 class="display-4 font-weight-bold">Plan Básico</h1>
+        <p class="lead">La solución perfecta para pequeñas empresas que buscan digitalizarse y gestionar sus operaciones de manera eficiente.</p>
+        <a href="{% url 'suscripcion' %}" class="btn btn-primary btn-lg shadow-lg mt-4">Suscribirme</a>
+    </div>
+</section>
+
+<!-- Sección de Vista Previa del Software -->
+<section id="software-preview" class="py-5 mode-sensitive-bg">
+    <div class="container">
+        <h2 class="text-center font-weight-bold mb-4">Explora cómo luce nuestro software</h2>
+        <div class="row align-items-center">
+            <!-- Imagen del software en móvil -->
+            <div class="col-md-6 text-center mb-4">
+                <img src="/static/img/software_mobile_basic.webp" alt="Vista del software en móvil" class="img-fluid rounded-lg shadow">
+            </div>
+            <!-- Características destacadas -->
+            <div class="col-md-6">
+                <ul class="list-unstyled">
+                    <li class="mb-3">
+                        <h5><i class="fas fa-file-invoice-dollar text-primary"></i> Facturación Electrónica Básica</h5>
+                        <p>Emite facturas fácilmente cumpliendo las normativas fiscales.</p>
+                    </li>
+                    <li class="mb-3">
+                        <h5><i class="fas fa-box text-primary"></i> Gestión de Inventarios</h5>
+                        <p>Controla hasta 100 productos de tu inventario en tiempo real.</p>
+                    </li>
+                    <li class="mb-3">
+                        <h5><i class="fas fa-envelope text-primary"></i> Soporte por Correo</h5>
+                        <p>Accede a soporte técnico básico para resolver tus dudas.</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sección de Funcionalidades -->
+<section id="plan-features" class="py-5">
+    <div class="container">
+        <h2 class="text-center font-weight-bold mb-4">Características Incluidas en el Plan Básico</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <ul class="list-unstyled">
+                    <li><i class="fas fa-check text-success"></i> Facturación electrónica básica</li>
+                    <li><i class="fas fa-check text-success"></i> Hasta 100 productos</li>
+                    <li><i class="fas fa-check text-success"></i> Soporte técnico por correo electrónico</li>
+                    <li><i class="fas fa-check text-success"></i> Acceso a reportes básicos</li>
+                </ul>
+            </div>
+            <!-- Imagen del software en laptop -->
+            <div class="col-md-6 text-center">
+                <img src="/static/img/software_laptop_basic.webp" alt="Vista del software en laptop" class="img-fluid rounded-lg shadow">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sección de Llamado a la Acción -->
+<section id="subscription" class="py-5 mode-sensitive-bg">
+    <div class="container text-center">
+        <h2 class="font-weight-bold">Empieza ahora con el Plan Básico</h2>
+        <p class="lead">Por solo <span class="text-primary">$19/mes</span>, digitaliza tu negocio con herramientas simples y efectivas.</p>
+        <a href="{% url 'suscripcion' %}" class="btn btn-success btn-lg shadow-lg">Suscribirme</a>
+    </div>
+</section>
+{% endblock %}

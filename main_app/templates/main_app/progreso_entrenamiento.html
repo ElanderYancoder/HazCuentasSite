@@ -1,0 +1,134 @@
+{% extends "entrenamiento/base_entrenamiento.html" %}
+{% load static %}  <!-- Cargar la etiqueta static -->
+{% block entrenamiento_content %}
+<div class="mt-4">
+    <h2>Progreso de Entrenamiento</h2>
+        <p class="lead text-muted">Has completado <strong>{{ porcentaje_completado|floatformat:2 }}%</strong> del entrenamiento.</p>
+    </div>
+
+    <!-- Barra de Progreso -->
+    <div class="progress mb-5" style="height: 30px; border-radius: 15px;">  <!-- Altura aumentada -->
+        <div class="progress-bar bg-primary progress-bar-striped" role="progressbar"
+             style="width: {{ porcentaje_completado|default:0|floatformat:2 }}%;"
+             aria-valuenow="{{ porcentaje_completado }}" aria-valuemin="0" aria-valuemax="100">
+            {{ porcentaje_completado|floatformat:2 }}%
+        </div>
+    </div>
+
+    <!-- Botón para regresar a la lista de entrenamiento -->
+    <div class="text-center mb-4">
+        <a href="{% url 'lista_entrenamiento' %}" class="btn btn-primary btn-lg">
+            <i class="bi bi-arrow-left"></i> Volver al Entrenamiento
+        </a>
+    </div>
+
+    <!-- Lista de Lecciones Completadas -->
+    <div class="row">
+        <h3 class="col-12 text-center mb-4">Lecciones Completadas</h3>
+        {% if lecciones_completadas %}
+            {% for leccion in lecciones_completadas %}
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm">
+                        <!-- Imagen representativa de la lección -->
+                        {% if leccion.imagen %}
+                            <img src="{{ leccion.imagen.url }}" class="card-img-top" alt="{{ leccion.titulo }}" style="height: 200px; object-fit: cover;">
+                        {% else %}
+                            <img src="{% static 'img/default-course.jpg' %}" class="card-img-top" alt="Imagen por defecto" style="height: 200px; object-fit: cover;">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ leccion.titulo }}</h5>
+                            <p class="card-text">{{ leccion.descripcion|truncatewords:15 }}</p>
+                            <a href="{% url 'detalle_leccion' leccion.id %}" class="btn btn-primary">Ver Lección</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="alert alert-info col-12">
+                Aún no has completado ninguna lección.
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- Lista de Lecciones Pendientes -->
+    <div class="row mt-5">
+        <h3 class="col-12 text-center mb-4">Lecciones Pendientes</h3>
+        {% if lecciones_pendientes %}
+            {% for leccion in lecciones_pendientes %}
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm">
+                        <!-- Imagen representativa de la lección -->
+                        {% if leccion.imagen %}
+                            <img src="{{ leccion.imagen.url }}" class="card-img-top" alt="{{ leccion.titulo }}" style="height: 200px; object-fit: cover;">
+                        {% else %}
+                            <img src="{% static 'img/default-course.jpg' %}" class="card-img-top" alt="Imagen por defecto" style="height: 200px; object-fit: cover;">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ leccion.titulo }}</h5>
+                            <p class="card-text">{{ leccion.descripcion|truncatewords:15 }}</p>
+                            <a href="{% url 'detalle_leccion' leccion.id %}" class="btn btn-secondary">Iniciar Lección</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="alert alert-success col-12">
+                ¡Felicidades! Ya has completado todas las lecciones.
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- Gráfico de Progreso -->
+    <div class="mt-5">
+        <h4 class="text-center">Resumen de Progreso</h4>
+        <p class="text-center">Lecciones completadas: <strong>{{ total_completadas }}</strong> de <strong>{{ lecciones|length }}</strong></p>
+        <div style="position: relative; height: 300px;">
+            <canvas id="progresoChart"></canvas>
+        </div>
+    </div>
+</div>
+
+<!-- Script para generar gráfico de progreso -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+<script>
+    var ctx = document.getElementById('progresoChart').getContext('2d');
+    var progresoChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Completadas', 'Pendientes'],
+            datasets: [{
+                data: [
+                    {{ total_completadas }},
+                    {{ total_pendientes }}
+                ],
+                backgroundColor: ['#4caf50', '#f44336'],
+                borderColor: '#ffffff',
+                borderWidth: 2,
+                hoverOffset: 5,
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'top',
+                    labels: {
+                        font: {
+                            size: 16
+                        },
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(tooltipItem) {
+                            return tooltipItem.raw + ' lecciones';
+                        }
+                    }
+                }
+            }
+        }
+    });
+</script>
+
+{% endblock %}

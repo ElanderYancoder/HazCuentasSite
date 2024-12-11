@@ -1,0 +1,19 @@
+{% extends "main_app/base.html" %}
+
+{% block title %}Certificado de Finalización{% endblock %}
+
+{% block content %}
+<div class="container mt-5 text-center">
+    <div class="border border-dark p-4" style="max-width: 600px; margin: auto; background-color: #f9f9f9;">
+        <h2>Certificado de Finalización</h2>
+        <p>Este certificado es presentado a:</p>
+        <h3>{{ request.user.get_full_name }}</h3>
+        <p>por completar con éxito el curso de entrenamiento en digitalización de negocios.</p>
+        <p><strong>Fecha de emisión:</strong> {{ certificado.fecha_emision|date:"d M Y" }}</p>
+        
+        <div class="mt-4">
+            <a href="{% url 'descargar_certificado' certificado.id %}" class="btn btn-primary">Descargar Certificado</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

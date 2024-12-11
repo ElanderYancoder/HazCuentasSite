@@ -1,0 +1,66 @@
+<!-- publicar_testimonio.html -->
+{% extends "main_app/base.html" %}
+
+{% block title %}Publicar Testimonio - HazCuentas{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center font-weight-bold">Publica tu Testimonio</h2>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="id_nombre">Nombre</label>
+                {{ form.nombre }}
+                {% if form.nombre.errors %}
+                    <div class="alert alert-danger mt-2">
+                        {% for error in form.nombre.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="id_comentario">Comentario</label>
+                {{ form.comentario }}
+                {% if form.comentario.errors %}
+                    <div class="alert alert-danger mt-2">
+                        {% for error in form.comentario.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="id_foto">Foto (opcional)</label>
+                {{ form.foto }}
+            </div>
+
+            <button type="submit" class="btn btn-primary">Publicar Testimonio</button>
+        </form>
+
+        <h3 class="mt-5">Testimonios de Nuestros Clientes</h3>
+        <div class="row">
+            {% for testimonio in testimonios %}
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm border-light rounded">
+                    <div class="card-body text-center">
+                        {% if testimonio.foto %}
+                        <img src="{{ testimonio.foto.url }}" alt="Testimonio" class="img-fluid rounded-circle mb-3" style="width: 80px; height: 80px;">
+                        {% else %}
+                        <img src="/static/img/default-avatar.png" alt="Testimonio" class="img-fluid rounded-circle mb-3" style="width: 80px; height: 80px;">
+                        {% endif %}
+                        <p class="card-text">{{ testimonio.comentario }}</p>
+                        <h5 class="card-title">{{ testimonio.nombre }}</h5>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
+

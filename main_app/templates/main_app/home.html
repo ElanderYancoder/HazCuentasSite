@@ -1,0 +1,172 @@
+{% extends "main_app/base.html" %}
+
+{% block title %}Inicio - Digitalización de Negocios{% endblock %}
+
+{% block content %}
+<header class="hero text-center">
+    <!-- Imagen de fondo -->
+    <div class="hero-bg" style="background-image: url('/static/img/genio1.webp');"></div>
+    <div class="hero-overlay"></div>
+
+    <div class="container position-relative">
+        <!-- Título y contenido -->
+        <h1 class="display-3 font-weight-bold text-white">Bienvenido a HazCuentas</h1>
+        <p class="lead text-white">Transformamos la manera en que las pymes gestionan su negocio con herramientas digitales avanzadas.</p>
+        <a href="#features" class="btn btn-light btn-lg shadow-lg">Descubre más</a>
+    </div>
+</header>
+
+<!-- Sección de Características Destacadas -->
+<section id="features" class="py-5 mode-sensitive-bg">
+    <div class="container">
+        <h2 class="text-center mode-sensitive-text font-weight-bold">Características que nos hacen únicos</h2>
+        <p class="lead text-center mb-5 mode-sensitive-text">Nuestra plataforma está diseñada pensando en las necesidades reales de las pymes.</p>
+        <div class="row align-items-center">
+            <!-- Imagen de software en celular -->
+            <div class="col-md-6 mb-4 text-center">
+                <img src="/static/img/software_mobile.webp" alt="Software en móvil" class="img-fluid shadow-lg rounded-lg">
+            </div>
+            <!-- Características principales -->
+            <div class="col-md-6">
+                <ul class="list-unstyled">
+                    <li class="mb-4">
+                        <h5><i class="fas fa-check-circle text-primary"></i> Interfaz Intuitiva</h5>
+                        <p>Un diseño moderno y fácil de usar que facilita la navegación y mejora la productividad.</p>
+                    </li>
+                    <li class="mb-4">
+                        <h5><i class="fas fa-cloud text-primary"></i> Acceso en la Nube</h5>
+                        <p>Accede a tu información desde cualquier lugar y dispositivo, garantizando seguridad y disponibilidad.</p>
+                    </li>
+                    <li class="mb-4">
+                        <h5><i class="fas fa-shield-alt text-primary"></i> Seguridad Avanzada</h5>
+                        <p>Tus datos están protegidos con los más altos estándares de cifrado y seguridad.</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sección de Software en Laptop -->
+<section id="software" class="py-5">
+    <div class="container">
+        <h2 class="text-center text-dark font-weight-bold">Así se ve nuestro software</h2>
+        <p class="lead text-center mb-5">Un vistazo a nuestra plataforma en acción, diseñada para la eficiencia y la facilidad de uso.</p>
+        <div class="row align-items-center">
+            <div class="col-md-6 order-md-2 mb-4 text-center">
+                <img src="/static/img/software_laptop.webp" alt="Software en laptop" class="img-fluid shadow-lg rounded-lg">
+            </div>
+            <div class="col-md-6 order-md-1">
+                <h5 class="text-primary font-weight-bold">Digitaliza tu negocio</h5>
+                <p>HazCuentas permite gestionar facturación, inventarios y recursos desde una plataforma todo en uno, optimizada para laptops y móviles.</p>
+                <ul class="list-unstyled">
+                    <li><i class="fas fa-check text-success"></i> Fácil de implementar en cualquier negocio.</li>
+                    <li><i class="fas fa-check text-success"></i> Integración con herramientas populares.</li>
+                    <li><i class="fas fa-check text-success"></i> Actualizaciones automáticas y soporte continuo.</li>
+                </ul>
+                <a href="#plans" class="btn btn-primary btn-lg shadow-lg mt-3">Explora nuestros planes</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Sección de Servicios -->
+<section id="services" class="py-5">
+    <div class="container">
+        <h2 class="text-center text-dark font-weight-bold">¿Qué ofrecemos?</h2>
+        <p class="lead text-center mb-5">Desarrollamos software que ayuda a las empresas a digitalizar sus procesos y mejorar la eficiencia en la gestión de negocios.</p>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm border-light rounded">
+                    <img src="/static/img/feature-1.webp" class="card-img-top rounded-top" alt="Facturación">
+                    <div class="card-body">
+                        <h5 class="card-title text-center mode-sensitive-text">Facturación Electrónica</h5>
+                        <p class="card-text">Automatiza la emisión de facturas electrónicas, facilitando el cumplimiento de las normativas fiscales.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm border-light rounded">
+                    <img src="/static/img/feature-2.webp" class="card-img-top rounded-top" alt="Inventario">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Gestión de Inventarios</h5>
+                        <p class="card-text">Controla tu inventario en tiempo real, reduciendo pérdidas y mejorando la toma de decisiones.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm border-light rounded">
+                    <img src="/static/img/feature-3.webp" class="card-img-top rounded-top" alt="Gestión Empresarial">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Gestión Empresarial</h5>
+                        <p class="card-text">Herramientas que facilitan la gestión de recursos humanos, contabilidad y más, todo en una plataforma integral.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sección de Planes -->
+<section id="plans" class="py-5 mode-sensitive-bg">
+    <div class="container">
+        <h2 class="text-center mode-sensitive-text font-weight-bold">Planes que se ajustan a tus necesidades</h2>
+        <p class="lead text-center mb-5 mode-sensitive-text">Selecciona el plan ideal para tu empresa.</p>
+        <div class="row">
+            <!-- Plan Básico -->
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm border-primary rounded">
+                    <div class="card-header text-center bg-primary text-white">
+                        <h5>Plan Básico</h5>
+                    </div>
+                    <div class="card-body text-center mode-sensitive-card">
+                        <p class="lead">$19/mes</p>
+                        <ul class="list-unstyled">
+                            <li>Facturación básica</li>
+                            <li>Hasta 100 productos</li>
+                            <li>Soporte por correo</li>
+                        </ul>
+                        <a href="{% url 'plan_basic' %}" class="btn btn-primary shadow">Más detalles</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Plan Profesional -->
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm border-success rounded">
+                    <div class="card-header text-center bg-success text-white">
+                        <h5>Plan Profesional</h5>
+                    </div>
+                    <div class="card-body text-center mode-sensitive-card">
+                        <p class="lead">$49/mes</p>
+                        <ul class="list-unstyled">
+                            <li>Facturación avanzada</li>
+                            <li>Hasta 500 productos</li>
+                            <li>Soporte prioritario</li>
+                        </ul>
+                        <a href="{% url 'plan_professional' %}" class="btn btn-success shadow">Más detalles</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Plan Empresarial -->
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm border-danger rounded">
+                    <div class="card-header text-center bg-danger text-white">
+                        <h5>Plan Empresarial</h5>
+                    </div>
+                    <div class="card-body text-center mode-sensitive-card">
+                        <p class="lead">$99/mes</p>
+                        <ul class="list-unstyled">
+                            <li>Facturación avanzada + ERP</li>
+                            <li>Productos ilimitados</li>
+                            <li>Soporte 24/7</li>
+                        </ul>
+                        <a href="{% url 'plan_enterprise' %}" class="btn btn-danger shadow">Más detalles</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

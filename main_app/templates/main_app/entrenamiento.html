@@ -1,0 +1,9 @@
+{% extends "entrenamiento/base_entrenamiento.html" %}
+
+{% block entrenamiento_content %}
+<div class="container mt-5">
+    <h2>Bienvenido a la Sección de Entrenamiento</h2>
+    <p>Explora los módulos y lecciones para mejorar tus habilidades.</p>
+    <a href="{% url 'lista_entrenamiento' %}" class="btn btn-primary">Ver Módulos de Entrenamiento</a>
+</div>
+{% endblock %}

@@ -1,0 +1,115 @@
+{% extends "main_app/base.html" %}
+{% load custom_filters %}  <!-- Cargar filtros personalizados -->
+
+{% block title %}Iniciar Sesión{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <!-- Título principal de la página -->
+    <div class="text-center mb-5">
+        <h1 class="display-4 font-weight-bold text-primary">Bienvenido a HazCuentas</h1>
+        <p class="lead text-muted">Inicia sesión para acceder a tus herramientas de gestión empresarial.</p>
+    </div>
+
+    <!-- Tarjeta central del formulario -->
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6"> <!-- Ajuste del ancho de la tarjeta -->
+            <div class="card shadow-lg border-0 rounded-lg">
+                <!-- Encabezado de la tarjeta -->
+                <div class="card-header bg-primary text-white text-center py-3">
+                    <h3 class="font-weight-bold mb-0">Iniciar Sesión</h3>
+                </div>
+                <div class="card-body px-4 py-5">
+                    <!-- Formulario de inicio de sesión -->
+                    <form method="POST">
+                        {% csrf_token %}
+
+                        <!-- Campo para el nombre de usuario -->
+                        <div class="form-group">
+                            <label for="id_username" class="font-weight-bold">Nombre de Usuario</label>
+                            <input type="text" name="username" id="id_username" class="form-control rounded-pill shadow-sm" placeholder="Introduce tu nombre de usuario" required>
+                        </div>
+
+                        <!-- Campo para la contraseña -->
+                        <div class="form-group">
+                            <label for="id_password" class="font-weight-bold">Contraseña</label>
+                            <input type="password" name="password" id="id_password" class="form-control rounded-pill shadow-sm" placeholder="Introduce tu contraseña" required>
+                        </div>
+
+                        <!-- Botón de inicio de sesión -->
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary btn-lg w-100 shadow-sm rounded-pill">Iniciar Sesión</button>
+                        </div>
+                    </form>
+
+                    <!-- Enlace para el registro de nuevos usuarios -->
+                    <div class="text-center mt-4">
+                        <p class="text-muted">¿No tienes una cuenta? 
+                            <a href="{% url 'registro' %}" class="text-primary font-weight-bold">Regístrate aquí</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Beneficios destacados para empresas -->
+    <div class="mt-5">
+        <h2 class="text-center font-weight-bold text-primary">¿Por qué usar HazCuentas?</h2>
+        <p class="text-center text-muted mb-4">Accede a una plataforma que revoluciona la gestión de tu negocio.</p>
+        <div class="row text-center">
+            <div class="col-md-4">
+                <div class="icon-box mb-4">
+                    <i class="fas fa-lock fa-3x text-primary mb-3"></i>
+                    <h5 class="font-weight-bold">Seguridad Garantizada</h5>
+                    <p class="text-muted">Protege tus datos empresariales con encriptación avanzada.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="icon-box mb-4">
+                    <i class="fas fa-chart-pie fa-3x text-primary mb-3"></i>
+                    <h5 class="font-weight-bold">Análisis Avanzado</h5>
+                    <p class="text-muted">Obtén reportes detallados para tomar decisiones informadas.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="icon-box mb-4">
+                    <i class="fas fa-tools fa-3x text-primary mb-3"></i>
+                    <h5 class="font-weight-bold">Herramientas Personalizables</h5>
+                    <p class="text-muted">Adapta la plataforma a las necesidades específicas de tu empresa.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Estilos adicionales para personalizar la experiencia -->
+<style>
+    .card {
+        border-radius: 15px;
+    }
+    .card-header {
+        font-size: 1.5rem;
+    }
+    .form-control {
+        height: 45px;
+        font-size: 1rem;
+    }
+    .btn-primary {
+        background-color: #004aad;
+        border-color: #004aad;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    .btn-primary:hover {
+        background-color: #0073e6;
+        transform: scale(1.05);
+    }
+    .icon-box i {
+        transition: transform 0.3s ease, color 0.3s ease;
+    }
+    .icon-box i:hover {
+        transform: scale(1.2);
+        color: #0073e6;
+    }
+</style>
+{% endblock %}

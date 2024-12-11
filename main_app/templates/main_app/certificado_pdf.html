@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Certificado de Finalización</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
+        .certificado-container { border: 3px solid #004aad; padding: 40px; }
+        h2 { color: #004aad; }
+        .nombre { font-size: 24px; font-weight: bold; margin: 20px 0; }
+        .texto { font-size: 16px; }
+        .fecha { font-size: 14px; color: gray; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="certificado-container">
+        <h2>Certificado de Finalización</h2>
+        <p class="texto">Este certificado es otorgado a:</p>
+        <p class="nombre">{{ usuario }}</p>
+        <p class="texto">por haber completado exitosamente el curso de digitalización de negocios.</p>
+        <p class="fecha">Fecha de emisión: {{ fecha_emision }}</p>
+    </div>
+</body>
+</html>
